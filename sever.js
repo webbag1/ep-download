@@ -4,12 +4,12 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
-// Serve static files
+
 app.use(express.static(path.join(__dirname)));
 
-// Scraping function
+
 async function getEpisodeLink(episode) {
   const url = `https://ww20.gogoanimes.fi/one-piece-dub-episode-${episode}`;
   try {
@@ -23,7 +23,7 @@ async function getEpisodeLink(episode) {
   }
 }
 
-// Endpoint to fetch links for multiple episodes
+
 app.get("/get-links", async (req, res) => {
   const { start, end } = req.query;
   const startEpisode = parseInt(start, 10);
@@ -43,5 +43,5 @@ app.get("/get-links", async (req, res) => {
   }
 });
 
-// Start the server
+
 app.listen(PORT);
