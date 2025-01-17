@@ -4,7 +4,7 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 // Serve static files
 app.use(express.static(path.join(__dirname)));
@@ -44,4 +44,4 @@ app.get("/get-links", async (req, res) => {
 });
 
 // Start the server
-app.listen(PORT, () => console.log(`Server running `));
+app.listen(PORT);
